@@ -10,12 +10,11 @@ $(document).ready(function(){
 
 		var searchInput = $('#srch').val();
 
-		$.getJSON("http://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=Main+Page&generator=search&exchars=226&exlimit=10&exintro=1&gsrsearch="+searchInput+"&callback=?", function(json) {
+		$.getJSON("http://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=Main+Page&generator=search&exchars=226&exlimit=10&exintro=1&explaintext=1&gsrsearch="+searchInput+"&callback=?", function(json) {
 			var returns = json.query.pages;
 			for (var x in returns) {
 
-				var section = '<div class ="well"><a href="https://en.wikipedia.org/?curid='+returns[x].pageid+'" target="blank"><div>' +returns[x].title +'</div' +
-							  '<div>' +returns[x].extract + '</div></a></div>';
+				var section = '<div class ="well"><h3><a href="https://en.wikipedia.org/?curid='+returns[x].pageid+'"'+'target="blank">'+returns[x].title +'</h3></a>'+'<div>'+returns[x].extract+'</div></div>';
 
 				$('#results').append(section);
 			}		
